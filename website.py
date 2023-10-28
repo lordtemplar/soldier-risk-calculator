@@ -1,6 +1,3 @@
-Thank you for providing the details. I've updated the code with the provided credentials file name and sheet name. Here's the refined code:
-
-```python
 import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -53,8 +50,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
-
-Make sure the `client_secret_1043720766218-1s0kv34j82b4q42p5ea2b32ga1afhu1c.apps.googleusercontent.com.json` file is in the same directory as your Streamlit app or provide the full path to it. Also, ensure that the Google Sheet "Soldier Risk Calculator (Responses)" is shared with the email address found in your JSON credentials file.
-
-Run the Streamlit app as before, and it should now retrieve the Name, Surname, and Height from the specified Google Sheet using the Soldier ID as a key when the "Calculate" button is clicked.
