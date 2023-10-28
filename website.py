@@ -10,7 +10,7 @@ def get_data_from_sheet(soldier_id):
     client = gspread.authorize(creds)
 
     # Open the Google Sheet using its name
-    sheet = client.open("Soldier Risk Calculator (Responses)").sheet1
+    sheet = client.open("/soldier-risk-calculator/Soldier Risk Calculator (Responses)").sheet1
 
     # Search for the soldier ID and retrieve data
     try:
