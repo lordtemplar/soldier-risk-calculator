@@ -10,7 +10,7 @@ def get_first_row_from_sheet():
     client = gspread.authorize(creds)
 
     # Open the Google Sheet using its name
-    sheet = client.open("/SoldierRiskCalculator(Responses)").sheet1
+    sheet = client.open("SoldierRiskCalculator").sheet1
 
     # Get the first row of data
     return sheet.row_values(1)
