@@ -6,11 +6,11 @@ def get_data_from_sheet(soldier_id):
     # Set up the credentials
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets",
              "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("YOUR_CREDENTIALS_JSON_FILE.json", scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name("client_secret_1043720766218-1s0kv34j82b4q42p5ea2b32ga1afhu1c.apps.googleusercontent.com.json", scope)
     client = gspread.authorize(creds)
 
     # Open the Google Sheet using its name
-    sheet = client.open("YOUR_SHEET_NAME").sheet1
+    sheet = client.open("Soldier Risk Calculator (Responses)").sheet1
 
     # Search for the soldier ID and retrieve data
     try:
