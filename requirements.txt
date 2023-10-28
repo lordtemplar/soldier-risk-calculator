@@ -1,2 +1,2 @@
 gspread
-ServiceAccountCredentials
+oauth2client
