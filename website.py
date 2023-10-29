@@ -19,7 +19,7 @@ if 'fetched' not in st.session_state:
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
 
 # Input for Soldier ID
-soldier_id = st.text_input("รหัสประจำตัวทหารใหม่ (ใส่ 0 เพื่อค้นหารหัสประจำตัวทหารใหม่ทั้งหมด)")
+soldier_id = st.text_input("รหัสประจำตัวทหารใหม่ (ใส่ 0 เพื่อแสดงรหัสทั้งหมด)")
 
 # Fetch and display data using the specified structure
 if st.button("ค้นหาข้อมูล"):
@@ -46,23 +46,23 @@ if st.button("ค้นหาข้อมูล"):
 
 if st.session_state.fetched:
     # Display the fetched data
-    st.write(f"Timestamp: {st.session_state.record.get('Timestamp', 'N/A')}")
-    st.write(f"Soldier_ID: {soldier_id}")
-    st.write(f"Name: {st.session_state.record.get('Name', 'N/A')}")
-    st.write(f"Surname: {st.session_state.record.get('Surname', 'N/A')}")
-    st.write(f"Height: {st.session_state.record.get('Height', 'N/A')}")
-    st.write(f"Weight: {st.session_state.record.get('Weight', 'N/A')}")
+    st.write(f"บันทึกเมื่อ: {st.session_state.record.get('Timestamp', 'N/A')}")
+    st.write(f"รหัสประจำตัวทหารใหม่: {soldier_id}")
+    st.write(f"ชื่อ: {st.session_state.record.get('Name', 'N/A')}")
+    st.write(f"นามสกุล: {st.session_state.record.get('Surname', 'N/A')}")
+    st.write(f"ความสูง: {st.session_state.record.get('Height', 'N/A')}")
+    st.write(f"น้ำหนัก: {st.session_state.record.get('Weight', 'N/A')}")
     st.write("---")  # Separator
 
     # Additional Input Fields after fetching data
-    st.subheader("Input Additional Data for Risk Calculation")
-    body_temperature = st.number_input("Body_Temperature (Celsius)", min_value=30.0, max_value=42.0)
-    body_water = st.number_input("Body_Water (%)", min_value=0.0, max_value=100.0)
-    new_weight = st.number_input("New_Weight (Kg.)", min_value=30.0, max_value=200.0)
-    urine_color = st.selectbox("Urine_Color", options=[0, 1, 2, 3, 4])
+    st.subheader("กรอกข้อมูลเพิ่มเติมสำหรับการประเมินความเสี่ยง")
+    body_temperature = st.number_input("อุณหภูมิร่างกาย", min_value=30.0, max_value=42.0)
+    body_water = st.number_input("ปริมาณน้ำในร่างกาย", min_value=0.0, max_value=100.0)
+    new_weight = st.number_input("น้ำหนักปัจจุบัน", min_value=30.0, max_value=200.0)
+    urine_color = st.selectbox("สีปัสสาวะ", options=[0, 1, 2, 3, 4])
 
     # Calculate Button
-    if st.button("Calculate Risk"):
+    if st.button("คำนวนความเสี่ยง"):
         height = float(st.session_state.record.get("Height", 1))
         bmi = new_weight / ((height / 100) * (height / 100))
         bmi_risk = "RED" if bmi > 30 else "ORANGE" if 25 < bmi < 30 else "GREEN"
@@ -80,13 +80,13 @@ if st.session_state.fetched:
     
         box_size = "40px"  # Adjust this value for a bigger or smaller box
     
-        st.markdown(f"BMI Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[bmi_risk]}'></div>", unsafe_allow_html=True)
-        st.markdown(f"Body Temperature Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_temperature_risk]}'></div>", unsafe_allow_html=True)
-        st.markdown(f"Body Water Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
-        st.markdown(f"Urine Color Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"ความเสี่ยงจาก BMI: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[bmi_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"ความเสี่ยงจาก อุณภูมิร่างกาย: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_temperature_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"ความเสี่ยงจาก ปริมาณน้ำในร่างกาย: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"ความเสี่ยงจาก สีปัสสาวะ: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
     
     # Reset button
-    if st.button("Reset"):
+    if st.button("รีเซ็ต"):
         st.session_state.fetched = False
         st.session_state.record = {}
         st.experimental_rerun()  # Refresh the page 
