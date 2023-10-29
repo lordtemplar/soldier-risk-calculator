@@ -16,7 +16,7 @@ if 'fetched' not in st.session_state:
     st.session_state.record = {}
 
 # Fixed Google Sheet URL
-SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
+SHEET_URL = "https://docs.google.com/spreadsheets/d/18GA8Phnh7UOrySlzZMiOAHIPmoYJAvGYXm2aXhATpvc/edit?resourcekey#gid=164699372"
 
 # Input for Soldier ID
 soldier_id = st.text_input("รหัสประจำตัวทหารใหม่ (ใส่ 0 เพื่อแสดงรหัสทั้งหมด)")
