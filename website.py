@@ -1,16 +1,12 @@
 import streamlit as st
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 
 def get_first_row_from_sheet():
-    # Set up the credentials
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets",
-             "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("/soldier-risk-calculator-6f1676d0800b.json", scope)
-    client = gspread.authorize(creds)
+    # Use gspread to authenticate using your personal credentials
+    gc = gspread.service_account(filename=None)  # If you have no service account, it will use your personal credentials
 
-    # Open the Google Sheet using its name
-    sheet = client.open("SoldierRiskCalculator").sheet1
+    # Open the Google Sheet using its ID
+    sheet = gc.open_by_key("1050462434").sheet1
 
     # Get the first row of data
     return sheet.row_values(1)
