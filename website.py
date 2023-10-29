@@ -23,25 +23,31 @@ if st.button("Fetch Data"):
     
     # Get all records
     records = worksheet.get_all_records()
-    
-    # Filter records by Soldier_ID
-    matching_records = [record for record in records if record.get("Soldier_ID") == soldier_id]
-    
-    if matching_records:
-        for record in matching_records:
-            timestamp = record.get("Timestamp", "N/A")
-            name = record.get("Name", "N/A")
-            surname = record.get("Surname", "N/A")
-            height = record.get("Height", "N/A")
-            weight = record.get("Weight", "N/A")
-            
-            # Display the data in Streamlit
-            st.write(f"Timestamp: {timestamp}")
-            st.write(f"Soldier_ID: {soldier_id}")
-            st.write(f"Name: {name}")
-            st.write(f"Surname: {surname}")
-            st.write(f"Height: {height}")
-            st.write(f"Weight: {weight}")
-            st.write("---")  # Separator
+
+    if soldier_id == "0":
+        all_soldier_ids = [record.get("Soldier_ID") for record in records]
+        st.write("All Soldier_IDs:")
+        for sid in all_soldier_ids:
+            st.write(sid)
     else:
-        st.warning(f"No data found for Soldier_ID: {soldier_id}")
+        # Filter records by Soldier_ID
+        matching_records = [record for record in records if record.get("Soldier_ID") == soldier_id]
+        
+        if matching_records:
+            for record in matching_records:
+                timestamp = record.get("Timestamp", "N/A")
+                name = record.get("Name", "N/A")
+                surname = record.get("Surname", "N/A")
+                height = record.get("Height", "N/A")
+                weight = record.get("Weight", "N/A")
+                
+                # Display the data in Streamlit
+                st.write(f"Timestamp: {timestamp}")
+                st.write(f"Soldier_ID: {soldier_id}")
+                st.write(f"Name: {name}")
+                st.write(f"Surname: {surname}")
+                st.write(f"Height: {height}")
+                st.write(f"Weight: {weight}")
+                st.write("---")  # Separator
+        else:
+            st.warning(f"No data found for Soldier_ID: {soldier_id}")
