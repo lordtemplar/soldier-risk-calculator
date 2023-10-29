@@ -72,7 +72,17 @@ if st.session_state.fetched:
 
         # Display the results
         st.write(f"BMI: {bmi:.2f}")
-        st.write(f"BMI Risk: {bmi_risk}")
-        st.write(f"Body Temperature Risk: {body_temperature_risk}")
-        st.write(f"Body Water Risk: {body_water_risk}")
-        st.write(f"Urine Color Risk: {urine_color_risk}")
+
+        # Display colored boxes for risks
+        color_mapping = {
+            "RED": "#FF0000",
+            "ORANGE": "#FFA500",
+            "YELLOW": "#FFFF00",
+            "GREEN": "#008000"
+        }
+        
+        st.markdown(f"BMI Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[bmi_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"Body Temperature Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[body_temperature_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"Body Water Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"Urine Color Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
+
