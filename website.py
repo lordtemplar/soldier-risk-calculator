@@ -85,8 +85,8 @@ if st.session_state.fetched:
         st.markdown(f"Body Water Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
         st.markdown(f"Urine Color Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
     
-     # Reset button
-        if st.button("Reset"):
-            st.session_state.fetched = False
-            st.session_state.record = {}
-            st.experimental_rerun()  # Refresh the page   
+    # Reset button
+    if st.button("Reset"):
+        st.session_state.fetched = False
+        st.session_state.record = {}
+        st.experimental_rerun()  # Refresh the page 
