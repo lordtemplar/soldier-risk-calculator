@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "soldier-risk-calculator",
+  "private_key_id": "93be17dccbd3080eefb5458577c16e7ee1e7ecbc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCOtZA/oKmGsFpO\nXu9gHyL1LIoeEM2OR1dOBycP8+J8yf2sxa7pKntskLxgYylKPcFLQMYqWWZd0zkI\nQUu9VabDJHBltSPE/JLmo7311mI0jTeF5q06OkENExwQhnau8Yx0Fj87aC34e3A6\nzE6xpBTB60cnsMSrmLh9D9CErhCQeHwlmFGH4WG482bV3kzkQy8bP0fcVJQ+MtYB\nEg3nMmULfxR+z+lhWzs2zoA5otMFAuqXksq++ewxywTaAvaYoNdYNarV7qfx+qh9\n13W4Yhmf3BA0hjF3qa0/ct1x/pSPXEBAP9GZRaXkjz7rIp21qVdfoqWVWU4Pli/A\nH5EG2MjNAgMBAAECggEACGKZMO/k/h2/FKNF3+k8cdj13ZnhphZBhjtr22daW7g3\noE72PcuJ+IFRnD0/WBYkVSJfcm4R0nn+fCJwC5YsiANMWmGIEkM/827UEs2PtCRH\nCqZY79ar61N/3uWztAhL1ydWfExdBSBlogLOrefk81b6dZXQnH+K+Yg0GZOrs/1V\n3fU/Xpq3klgftkSQWVQ0eTmQy5LCfdvEqBmG/lVvGen8/TVG0jHC574M7IXvGyuG\nEvZiZHljpPK6yDIXquf/8ll+9BwIswxP2cix8wVP9h/13Cotk2dCh143sbY399WE\n2xPtM66Llb+KHWXgQxEIG6d6MdTj9jbC+CuGZ6JAaQKBgQDGWUNUXrwQOS4LTVC3\nm4jqxopQm2xZhmY2uBhH9xijT4nGEFYOTsbrX2WLq3uzlZAMyYSzY3eAbc4trZvX\ndLniGNWynNLca0ZyvMXKjWvZyEVyA9WRJqUmN15KtOg7hnCtgXPpp55ackwzFo0f\nbJU1Os6HeIHcjONzqN289vlR2QKBgQC4MEcjoSuwVFzc7asTfOlIJD1utbn4oOEl\npqr0TPqQqkB4Fc53iVdkd3+DrtqlGq1nJ5cqy7n9pr6dtLrDZaxugGFLsvOex4FP\nKPVdmpk+iIgTiWOb8KG961xq/OoX0FzcLunvyA2wtb99hC0kNUf6Aq9lrNDxKbL4\nysnK8ZBiFQKBgF5g+viaW0Ic8xvNniq/h1avQgE480Vl/hzrXCJiIQcUQapM+6Wz\nNlOpANiEsEezUufCu7HgEmy50vFJOm46zHgY+RYUKQFYyhyuVi8bO8ZU1TZ7PJPk\nn5Cfp+5ERnyMa/EjN9RmPaMr37YvdNcPA7BgWwV7Ac+/+jp+j4PqwJeBAoGANDq8\ncYYKdX32t09N68DIBgUAxpwRmEdGkP6qC4yooM0maucEHTF87qhUKGs05Qyjj1TS\nsPgETcEy3FWbgD0coFkXPfgIzUWVjXT33wsv2WOt8pxK+rVJqClNk6kUWJxlOKq0\n+6GnAC0Jl/YbNuFE/8gzJInU1g4VCie3AS1u2+ECgYAfJoDKkJK4NbgUM5KQdmvH\n8GGtkjRG/vW+AuPKIF8BDFl0ihVUHcHM5OZik4gczLju+5pUQYkr7jBESVdEnVa3\nuR9QDuECr0gkGnZjiD12qPj4SYOzJwPSS58CciCAD2z7betvpDVgLyb6q+fx7pgS\nV0kkw80sYmzblrUzlNjn2Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "soldier-risk-calculator@soldier-risk-calculator.iam.gserviceaccount.com",
+  "client_id": "106100333070854572984",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/soldier-risk-calculator%40soldier-risk-calculator.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
