@@ -10,7 +10,7 @@ client = gspread.authorize(creds)
 # Streamlit UI
 st.title("Google Sheets CRUD App")
 
-sheet_url = st.text_input("https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434", "")
+sheet_url = st.text_input("1050462434", "")
 spreadsheet = client.open_by_url(sheet_url)
 
 # Read
