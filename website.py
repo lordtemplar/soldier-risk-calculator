@@ -50,8 +50,6 @@ if st.button("Fetch Data"):
 
 # Your code to fetch data and display it
 if st.session_state.app_state == 'fetched':
-
-if st.session_state.fetched:
     # Display the fetched data
     st.write(f"Timestamp: {st.session_state.record.get('Timestamp', 'N/A')}")
     st.write(f"Soldier_ID: {soldier_id}")
