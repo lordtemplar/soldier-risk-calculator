@@ -96,16 +96,24 @@ if st.session_state.fetched:
         st.markdown(f"ความเสี่ยงจาก ปริมาณน้ำในร่างกาย: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
         st.markdown(f"ความเสี่ยงจาก สีปัสสาวะ: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
 
-        # Format the message
+        # Emoji mapping for risks
+        emoji_mapping = {
+            "RED": "🟥",
+            "ORANGE": "🟧",
+            "YELLOW": "🟨",
+            "GREEN": "🟩"
+        }
+        
+        # Format the message with emojis
         message = f"""
     --- ข้อมูลทหารใหม่ ---
     รหัสประจำตัว: {soldier_id}
     ชื่อ: {st.session_state.record.get('Name', 'N/A')} {st.session_state.record.get('Surname', 'N/A')}
     ----- ความเสี่ยง -----
-    BMI: {bmi_risk}
-    อุณภูมิร่างกาย: {body_temperature_risk}
-    ปริมาณน้ำในร่างกาย: {body_water_risk}
-    สีปัสสาวะ: {urine_color_risk}
+    BMI: {emoji_mapping[bmi_risk]}
+    อุณภูมิร่างกาย: {emoji_mapping[body_temperature_risk]}
+    ปริมาณน้ำในร่างกาย: {emoji_mapping[body_water_risk]}
+    สีปัสสาวะ: {emoji_mapping[urine_color_risk]}
         """
 
         # Send the notification
