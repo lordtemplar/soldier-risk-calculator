@@ -91,6 +91,8 @@ if st.session_state.fetched:
         
         # Reset button
         if st.button('Reset'):
-        # Redirect to the specified URL using JavaScript
-        redirect_url = "https://bmemxkjqqdievxsmxh67ew.streamlit.app/"
+            # Redirect to the specified URL using JavaScript
+            redirect_url = "https://bmemxkjqqdievxsmxh67ew.streamlit.app/"
+            st.markdown(f'<script>window.location.href="{redirect_url}";</script>', unsafe_allow_html=True)
+        
 
