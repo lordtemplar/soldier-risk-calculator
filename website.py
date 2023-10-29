@@ -91,21 +91,10 @@ if st.session_state.fetched:
         
         # Reset button
         if st.button("Reset"):
-            # Clear session state variables
-            st.session_state.fetched = False
-            st.session_state.record = {}
+            # Clear all session state variables
+            st.session_state.clear()
             
-            # Clear input values
-            if 'soldier_id' in st.session_state:
-                del st.session_state.soldier_id
-            if 'body_temperature' in st.session_state:
-                del st.session_state.body_temperature
-            if 'body_water' in st.session_state:
-                del st.session_state.body_water
-            if 'new_weight' in st.session_state:
-                del st.session_state.new_weight
-            if 'urine_color' in st.session_state:
-                del st.session_state.urine_color
-            
-            st.experimental_rerun()  # Refresh the page
+            # Rerun the app
+            st.experimental_rerun()
+
 
