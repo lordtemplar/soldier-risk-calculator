@@ -10,6 +10,10 @@ client = gspread.authorize(creds)
 # Streamlit UI
 st.title("Google Sheets Data Fetcher by Soldier ID")
 
+# Initialize session state variables
+if 'fetched' not in st.session_state:
+    st.session_state.fetched = False
+
 # Fixed Google Sheet URL
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
 
@@ -18,47 +22,22 @@ soldier_id = st.text_input("Enter Soldier_ID:")
 
 # Fetch and display data using the specified structure
 if st.button("Fetch Data"):
-    spreadsheet = client.open_by_url(SHEET_URL)
-    worksheet = spreadsheet.sheet1
-    
-    # Get all records
-    records = worksheet.get_all_records()
+    st.session_state.fetched = True
+    # ... [rest of the fetching code]
 
-    if soldier_id == "0":
-        all_soldier_ids = [record.get("Soldier_ID") for record in records]
-        st.write("All Soldier_IDs:")
-        for sid in all_soldier_ids:
-            st.write(sid)
-    else:
-        # Filter records by Soldier_ID (ensure both are treated as strings)
-        matching_records = [record for record in records if str(record.get("Soldier_ID")) == str(soldier_id)]
-        
-        if matching_records:
-            record = matching_records[0]  # Assuming one unique Soldier_ID, get the first matching record
-            timestamp = record.get("Timestamp", "N/A")
-            name = record.get("Name", "N/A")
-            surname = record.get("Surname", "N/A")
-            height = record.get("Height", "N/A")
-            weight = record.get("Weight", "N/A")
-            
-            # Display the fetched data
-            st.write(f"Timestamp: {timestamp}")
-            st.write(f"Soldier_ID: {soldier_id}")
-            st.write(f"Name: {name}")
-            st.write(f"Surname: {surname}")
-            st.write(f"Height: {height}")
-            st.write(f"Weight: {weight}")
-            st.write("---")  # Separator
+if st.session_state.fetched:
+    # ... [rest of the code for displaying fetched data and additional input fields]
 
-            # Additional Input Fields after fetching data
-            st.subheader("Input Additional Data for Risk Calculation")
-            body_temperature = st.number_input("Body_Temperature (Celsius)", min_value=30.0, max_value=42.0)
-            body_water = st.slider("Body_Water (%)", min_value=0, max_value=100)
-            new_weight = st.number_input("New_Weight (Kg.)", min_value=30.0, max_value=200.0)
-            urine_color = st.selectbox("Urine_Color", options=[0, 1, 2, 3, 4])
+    # Additional Input Fields after fetching data
+    st.subheader("Input Additional Data for Risk Calculation")
+    body_temperature = st.number_input("Body_Temperature (Celsius)", min_value=30.0, max_value=42.0)
+    body_water = st.slider("Body_Water (%)", min_value=0, max_value=100)
+    new_weight = st.number_input("New_Weight (Kg.)", min_value=30.0, max_value=200.0)
+    urine_color = st.selectbox("Urine_Color", options=[0, 1, 2, 3, 4])
 
-            # Calculate Button
-            if st.button("Calculate Risk"):
+    # Calculate Button
+    if st.button("Calculate Risk"):
+
                 # Risk calculation
                 bmi = new_weight / ((float(height) / 100) ** 2)
                 bmi_risk = "RED" if bmi > 30 else "ORANGE" if 25 < bmi < 30 else "GREEN"
