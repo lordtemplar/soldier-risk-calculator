@@ -14,18 +14,20 @@ st.title("Google Sheets Data Fetcher by Soldier ID")
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
 
 # Input for Soldier ID
-soldier_id = st.text_input("Enter Soldier ID:")
 
-# Fetch and display data using the specified structure
 if st.button("Fetch Data"):
     spreadsheet = client.open_by_url(SHEET_URL)
     worksheet = spreadsheet.sheet1
     
     # Get all records
     records = worksheet.get_all_records()
+
+    # Debug: Display all Soldier IDs
+    all_soldier_ids = [str(record.get("Soldier ID", "N/A")).strip() for record in records]
+    st.write("All Soldier IDs:", all_soldier_ids)
     
     # Filter records by Soldier ID
-    matching_records = [record for record in records if record.get("Soldier ID") == soldier_id]
+    matching_records = [record for record in records if str(record.get("Soldier ID")).strip() == soldier_id.strip()]
     
     if matching_records:
         for record in matching_records:
