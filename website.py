@@ -1,6 +1,17 @@
 import streamlit as st
 import gspread
+import requests
 from oauth2client.service_account import ServiceAccountCredentials
+
+def send_line_notification(token, message):
+    url = "https://notify-api.line.me/api/notify"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {"message": message}
+    response = requests.post(url, headers=headers, data=data)
+    return response.status_code
 
 # Setup gspread
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -84,6 +95,21 @@ if st.session_state.fetched:
         st.markdown(f"ความเสี่ยงจาก อุณภูมิร่างกาย: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_temperature_risk]}'></div>", unsafe_allow_html=True)
         st.markdown(f"ความเสี่ยงจาก ปริมาณน้ำในร่างกาย: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
         st.markdown(f"ความเสี่ยงจาก สีปัสสาวะ: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
+
+        # Format the message
+        message = f"""
+    Soldier_ID: {soldier_id}
+    Name: {st.session_state.record.get('Name', 'N/A')}
+    Surname: {st.session_state.record.get('Surname', 'N/A')}
+    BMI_Risk: {bmi_risk}
+    Temperature_Risk: {body_temperature_risk}
+    Water_Risk: {body_water_risk}
+    Urine_Color_Risk: {urine_color_risk}
+        """
+
+        # Send the notification
+        token = "7drFoIcYY1zLs7zXTF2Hl3C905x9VLTimKIpRRqsjXH"  # Your LINE Notify token
+        send_line_notification(token, message)
     
     # Reset button
     if st.button("รีเซ็ต"):
