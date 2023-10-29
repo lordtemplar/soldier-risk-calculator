@@ -19,7 +19,7 @@ if 'fetched' not in st.session_state:
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
 
 # Input for Soldier ID
-soldier_id = st.text_input("รหัสประจำตัวทหารใหม่:")
+soldier_id = st.text_input("รหัสประจำตัวทหารใหม่ (ใส่ "0" เพื่อค้นหารหัสประจำตัวทหารใหม่ทั้งหมด)")
 
 # Fetch and display data using the specified structure
 if st.button("ค้นหาข้อมูล"):
@@ -31,7 +31,7 @@ if st.button("ค้นหาข้อมูล"):
 
     if soldier_id == "0":
         all_soldier_ids = [record.get("Soldier_ID") for record in records]
-        st.write("All Soldier_IDs:")
+        st.write("รหัสประจำตัวทหารใหม่ทั้งหมด:")
         for sid in all_soldier_ids:
             st.write(sid)
     else:
