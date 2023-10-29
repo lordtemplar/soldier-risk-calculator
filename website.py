@@ -29,8 +29,8 @@ if st.button("Fetch Data"):
         st.write("All Soldier_IDs:")
         for sid in all_soldier_ids:
             st.write(sid)
-   else:
-        # Filter records by Soldier_ID (ensure both are treated as strings)
+    # Filter records by Soldier_ID (ensure both are treated as strings)
+    else:
         matching_records = [record for record in records if str(record.get("Soldier_ID")) == str(soldier_id)]
         
         if matching_records:
