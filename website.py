@@ -62,17 +62,17 @@ if st.session_state.fetched:
     urine_color = st.selectbox("Urine_Color", options=[0, 1, 2, 3, 4])
 
     # Calculate Button
-if st.button("Calculate Risk"):
-    height = float(st.session_state.record.get("Height", 1))
-    bmi = new_weight / ((height / 100) * (height / 100))
-    bmi_risk = "RED" if bmi > 30 else "ORANGE" if 25 < bmi < 30 else "GREEN"
-    body_temperature_risk = "RED" if body_temperature > 37.2 else "YELLOW" if 36.8 < body_temperature <= 37.2 else "GREEN"
-    body_water_risk = "RED" if body_water < 55 else "YELLOW" if 55 <= body_water < 65 else "GREEN"
-    urine_color_risk = ["GREEN", "GREEN", "YELLOW", "ORANGE", "RED"][urine_color]
+    if st.button("Calculate Risk"):
+        height = float(st.session_state.record.get("Height", 1))
+        bmi = new_weight / ((height / 100) ** 2)
+        bmi_risk = "RED" if bmi > 30 else "ORANGE" if 25 < bmi < 30 else "GREEN"
+        body_temperature_risk = "RED" if body_temperature > 37.2 else "YELLOW" if 36.8 < body_temperature <= 37.2 else "GREEN"
+        body_water_risk = "RED" if body_water < 55 else "YELLOW" if 55 <= body_water < 65 else "GREEN"
+        urine_color_risk = ["GREEN", "GREEN", "YELLOW", "ORANGE", "RED"][urine_color]
 
-    # Display the results
-    st.write(f"BMI: {bmi:.2f}")
-    st.write(f"BMI Risk: {bmi_risk}")
-    st.write(f"Body Temperature Risk: {body_temperature_risk}")
-    st.write(f"Body Water Risk: {body_water_risk}")
-    st.write(f"Urine Color Risk: {urine_color_risk}")
+        # Display the results
+        st.write(f"BMI: {bmi:.2f}")
+        st.write(f"BMI Risk: {bmi_risk}")
+        st.write(f"Body Temperature Risk: {body_temperature_risk}")
+        st.write(f"Body Water Risk: {body_water_risk}")
+        st.write(f"Urine Color Risk: {urine_color_risk}")
