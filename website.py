@@ -51,3 +51,29 @@ if st.button("Fetch Data"):
                 st.write("---")  # Separator
         else:
             st.warning(f"No data found for Soldier_ID: {soldier_id}")
+
+# Additional Input Fields
+st.subheader("Input Additional Data for Risk Calculation")
+body_temperature = st.number_input("Body_Temperature (Celsius)", min_value=30.0, max_value=42.0)
+body_water = st.slider("Body_Water (%)", min_value=0, max_value=100)
+new_weight = st.number_input("New_Weight (Kg.)", min_value=30.0, max_value=200.0)
+urine_color = st.selectbox("Urine_Color", options=[0, 1, 2, 3, 4])
+
+# Calculate Button
+if st.button("Calculate Risk"):
+    # Calculation Process
+    height = float(record.get("Height", 1))  # Fetch height from the previously fetched record
+    bmi = new_weight / ((height / 100) ** 2)
+
+    # Output after calculation
+    bmi_risk = "RED" if bmi > 30 else "ORANGE" if 25 < bmi < 30 else "GREEN"
+    body_temperature_risk = "RED" if body_temperature > 37.2 else "YELLOW" if 36.8 < body_temperature <= 37.2 else "GREEN"
+    body_water_risk = "RED" if body_water < 55 else "YELLOW" if 55 <= body_water < 65 else "GREEN"
+    urine_color_risk = ["GREEN", "GREEN", "YELLOW", "ORANGE", "RED"][urine_color]
+
+    # Display the results
+    st.write(f"BMI: {bmi:.2f}")
+    st.write(f"BMI Risk: {bmi_risk}")
+    st.write(f"Body Temperature Risk: {body_temperature_risk}")
+    st.write(f"Body Water Risk: {body_water_risk}")
+    st.write(f"Urine Color Risk: {urine_color_risk}")
