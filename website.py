@@ -98,17 +98,17 @@ if st.session_state.fetched:
 
         # Format the message
         message = f"""
-    Soldier_ID: {soldier_id}
-    Name: {st.session_state.record.get('Name', 'N/A')}
-    Surname: {st.session_state.record.get('Surname', 'N/A')}
-    BMI_Risk: {bmi_risk}
-    Temperature_Risk: {body_temperature_risk}
-    Water_Risk: {body_water_risk}
-    Urine_Color_Risk: {urine_color_risk}
+    รหัสประจำตัวทหารใหม่: {soldier_id}
+    ชื่อ: {st.session_state.record.get('Name', 'N/A')}
+    นามสกุล: {st.session_state.record.get('Surname', 'N/A')}
+    ความเสี่ยงจาก BMI: {bmi_risk}
+    ความเสี่ยงจาก อุณภูมิร่างกาย: {body_temperature_risk}
+    ความเสี่ยงจาก ปริมาณน้ำในร่างกาย: {body_water_risk}
+    ความเสี่ยงจาก สีปัสสาวะ: {urine_color_risk}
         """
 
         # Send the notification
-        token = "7drFoIcYY1zLs7zXTF2Hl3C905x9VLTimKIpRRqsjXH"  # Your LINE Notify token
+        token = "S0zdZC7JLAu6l5vnHFublLHgeK3htiNWizef2aw6a4D"  # Your LINE Notify token
         send_line_notification(token, message)
     
     # Reset button
