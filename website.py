@@ -72,7 +72,7 @@ if st.session_state.fetched:
 
         # Display the results
         st.write(f"BMI: {bmi:.2f}")
-
+        
         # Display colored boxes for risks
         color_mapping = {
             "RED": "#FF0000",
@@ -81,8 +81,15 @@ if st.session_state.fetched:
             "GREEN": "#008000"
         }
         
-        st.markdown(f"BMI Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[bmi_risk]}'></div>", unsafe_allow_html=True)
-        st.markdown(f"Body Temperature Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[body_temperature_risk]}'></div>", unsafe_allow_html=True)
-        st.markdown(f"Body Water Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
-        st.markdown(f"Urine Color Risk: <div style='display: inline-block; width: 20px; height: 20px; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
-
+        box_size = "40px"  # Adjust this value for a bigger or smaller box
+        
+        st.markdown(f"BMI Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[bmi_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"Body Temperature Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_temperature_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"Body Water Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
+        st.markdown(f"Urine Color Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
+        
+        # Reset button
+        if st.button("Reset"):
+            st.session_state.fetched = False
+            st.session_state.record = {}
+            st.experimental_rerun()  # Refresh the page
