@@ -2,6 +2,9 @@ import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+if 'app_state' not in st.session_state:
+    st.session_state.app_state = 'initial'
+
 # Setup gspread
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("soldier-risk-calculator-93be17dccbd3.json", scope)
@@ -44,6 +47,9 @@ if st.button("Fetch Data"):
             st.session_state.record = matching_records[0]  # Assuming one unique Soldier_ID, get the first matching record
         else:
             st.warning(f"No data found for Soldier_ID: {soldier_id}")
+
+# Your code to fetch data and display it
+if st.session_state.app_state == 'fetched':
 
 if st.session_state.fetched:
     # Display the fetched data
@@ -91,9 +97,8 @@ if st.session_state.fetched:
         
         # Reset button
         if st.button('Reset'):
-            # Redirect to the specified URL using the meta-refresh tag
-            redirect_url = "https://bmemxkjqqdievxsmxh67ew.streamlit.app/"
-            st.markdown(f'<meta http-equiv="refresh" content="0; URL={redirect_url}">', unsafe_allow_html=True)
+            st.session_state.app_state = 'initial'
+            st.experimental_rerun()
 
         
 
