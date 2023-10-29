@@ -19,7 +19,8 @@ if 'fetched' not in st.session_state:
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
 
 # Input for Soldier ID
-soldier_id = st.text_input("Enter Soldier_ID:")
+soldier_id = st.text_input("Enter Soldier_ID:", value=st.session_state.get('soldier_id', ''))
+st.session_state.soldier_id = soldier_id
 
 # Fetch and display data using the specified structure
 if st.button("Fetch Data"):
@@ -90,6 +91,21 @@ if st.session_state.fetched:
         
         # Reset button
         if st.button("Reset"):
+            # Clear session state variables
             st.session_state.fetched = False
             st.session_state.record = {}
+            
+            # Clear input values
+            if 'soldier_id' in st.session_state:
+                del st.session_state.soldier_id
+            if 'body_temperature' in st.session_state:
+                del st.session_state.body_temperature
+            if 'body_water' in st.session_state:
+                del st.session_state.body_water
+            if 'new_weight' in st.session_state:
+                del st.session_state.new_weight
+            if 'urine_color' in st.session_state:
+                del st.session_state.urine_color
+            
             st.experimental_rerun()  # Refresh the page
+
