@@ -98,13 +98,13 @@ if st.session_state.fetched:
 
         # Format the message
         message = f"""
-    รหัสประจำตัวทหารใหม่: {soldier_id}
+    รหัสประจำตัว: {soldier_id}
     ชื่อ: {st.session_state.record.get('Name', 'N/A')}
     นามสกุล: {st.session_state.record.get('Surname', 'N/A')}
-    ความเสี่ยงจาก BMI: {bmi_risk}
-    ความเสี่ยงจาก อุณภูมิร่างกาย: {body_temperature_risk}
-    ความเสี่ยงจาก ปริมาณน้ำในร่างกาย: {body_water_risk}
-    ความเสี่ยงจาก สีปัสสาวะ: {urine_color_risk}
+    BMI: {bmi_risk}
+    อุณภูมิร่างกาย: {body_temperature_risk}
+    ปริมาณน้ำในร่างกาย: {body_water_risk}
+    สีปัสสาวะ: {urine_color_risk}
         """
 
         # Send the notification
