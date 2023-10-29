@@ -64,7 +64,7 @@ if st.session_state.fetched:
     # Calculate Button
     if st.button("Calculate Risk"):
         height = float(st.session_state.record.get("Height", 1))
-        bmi = new_weight / ((height / 100) ** 2)
+        bmi = new_weight / ((height / 100) * (height / 100))
         bmi_risk = "RED" if bmi > 30 else "ORANGE" if 25 < bmi < 30 else "GREEN"
         body_temperature_risk = "RED" if body_temperature > 37.2 else "YELLOW" if 36.8 < body_temperature <= 37.2 else "GREEN"
         body_water_risk = "RED" if body_water < 55 else "YELLOW" if 55 <= body_water < 65 else "GREEN"
