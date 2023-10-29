@@ -91,10 +91,5 @@ if st.session_state.fetched:
         
         # Reset button
         if st.button("Reset"):
-            # Clear all session state variables
-            st.session_state.clear()
-            
-            # Rerun the app
-            st.experimental_rerun()
-
-
+            # Use JavaScript to reload the page
+            st.markdown("<script>window.location.reload();</script>", unsafe_allow_html=True)
