@@ -8,7 +8,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("soldier-risk-calculato
 client = gspread.authorize(creds)
 
 # Streamlit UI
-st.title("Google Sheets Data Fetcher by Soldier ID")
+st.title("โปรแกรมคำนวนความเสี่ยงต่อโรคลมร้อน สำหรับทหารใหม่")
 
 # Initialize session state variables
 if 'fetched' not in st.session_state:
@@ -19,10 +19,10 @@ if 'fetched' not in st.session_state:
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
 
 # Input for Soldier ID
-soldier_id = st.text_input("Enter Soldier_ID:")
+soldier_id = st.text_input("รหัสประจำตัวทหารใหม่:")
 
 # Fetch and display data using the specified structure
-if st.button("Fetch Data"):
+if st.button("ค้นหาข้อมูล"):
     spreadsheet = client.open_by_url(SHEET_URL)
     worksheet = spreadsheet.sheet1
     
