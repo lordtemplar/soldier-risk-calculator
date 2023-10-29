@@ -98,9 +98,11 @@ if st.session_state.fetched:
 
         # Format the message
         message = f"""
+    ----- ข้อมูลทหารใหม่ -----
     รหัสประจำตัว: {soldier_id}
     ชื่อ: {st.session_state.record.get('Name', 'N/A')}
     นามสกุล: {st.session_state.record.get('Surname', 'N/A')}
+    ----- ความเสี่ยง -----
     BMI: {bmi_risk}
     อุณภูมิร่างกาย: {body_temperature_risk}
     ปริมาณน้ำในร่างกาย: {body_water_risk}
