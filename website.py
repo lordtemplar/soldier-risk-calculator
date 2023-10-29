@@ -2,9 +2,6 @@ import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-if 'app_state' not in st.session_state:
-    st.session_state.app_state = 'initial'
-
 # Setup gspread
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("soldier-risk-calculator-93be17dccbd3.json", scope)
@@ -22,8 +19,7 @@ if 'fetched' not in st.session_state:
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1sTGeISgyGZgngAkBl86cPcdIzfYKFyotXQUhcslGilw/edit#gid=1050462434"
 
 # Input for Soldier ID
-soldier_id = st.text_input("Enter Soldier_ID:", value=st.session_state.get('soldier_id', ''))
-st.session_state.soldier_id = soldier_id
+soldier_id = st.text_input("Enter Soldier_ID:")
 
 # Fetch and display data using the specified structure
 if st.button("Fetch Data"):
@@ -48,8 +44,7 @@ if st.button("Fetch Data"):
         else:
             st.warning(f"No data found for Soldier_ID: {soldier_id}")
 
-# Your code to fetch data and display it
-if st.session_state.app_state == 'fetched':
+if st.session_state.fetched:
     # Display the fetched data
     st.write(f"Timestamp: {st.session_state.record.get('Timestamp', 'N/A')}")
     st.write(f"Soldier_ID: {soldier_id}")
@@ -75,9 +70,6 @@ if st.session_state.app_state == 'fetched':
         body_water_risk = "RED" if body_water < 55 else "YELLOW" if 55 <= body_water < 65 else "GREEN"
         urine_color_risk = ["GREEN", "GREEN", "YELLOW", "ORANGE", "RED"][urine_color]
 
-        # Display the results
-        st.write(f"BMI: {bmi:.2f}")
-        
         # Display colored boxes for risks
         color_mapping = {
             "RED": "#FF0000",
@@ -85,18 +77,16 @@ if st.session_state.app_state == 'fetched':
             "YELLOW": "#FFFF00",
             "GREEN": "#008000"
         }
-        
+
         box_size = "40px"  # Adjust this value for a bigger or smaller box
-        
+
         st.markdown(f"BMI Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[bmi_risk]}'></div>", unsafe_allow_html=True)
         st.markdown(f"Body Temperature Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_temperature_risk]}'></div>", unsafe_allow_html=True)
         st.markdown(f"Body Water Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[body_water_risk]}'></div>", unsafe_allow_html=True)
         st.markdown(f"Urine Color Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
-        
-        # Reset button
-        if st.button('Reset'):
-            st.session_state.app_state = 'initial'
-            st.experimental_rerun()
 
-        
-
+# Reset button
+if st.button("Reset"):
+    st.session_state.fetched = False
+    st.session_state.record = {}
+    st.experimental_rerun()  # Refresh the page
