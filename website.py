@@ -90,6 +90,8 @@ if st.session_state.fetched:
         st.markdown(f"Urine Color Risk: <div style='display: inline-block; width: {box_size}; height: {box_size}; background-color: {color_mapping[urine_color_risk]}'></div>", unsafe_allow_html=True)
         
         # Reset button
-        if st.button("Reset"):
-            # Use JavaScript to reload the page
-            st.markdown("<script>window.location.reload();</script>", unsafe_allow_html=True)
+        if st.button('Reset'):
+        # Redirect to the specified URL using JavaScript
+        redirect_url = "https://bmemxkjqqdievxsmxh67ew.streamlit.app/"
+        st.markdown(f'<script>window.location.href="{redirect_url}";</script>', unsafe_allow_html=True)
+
