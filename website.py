@@ -105,20 +105,23 @@ if st.session_state.fetched:
         }
         
         # Format the message with emojis
-        message = f"""
-    --- ข้อมูลทหารใหม่ ---
-    รหัสประจำตัว: {soldier_id}
-    ชื่อ: {st.session_state.record.get('Name', 'N/A')} {st.session_state.record.get('Surname', 'N/A')}
-    ----- ความเสี่ยง -----
-    BMI: {emoji_mapping[bmi_risk]}
-    อุณภูมิร่างกาย: {emoji_mapping[body_temperature_risk]}
-    ปริมาณน้ำในร่างกาย: {emoji_mapping[body_water_risk]}
-    สีปัสสาวะ: {emoji_mapping[urine_color_risk]}
-        """
-
-        # Send the notification
-        token = "S0zdZC7JLAu6l5vnHFublLHgeK3htiNWizef2aw6a4D"  # Your LINE Notify token
-        send_line_notification(token, message)
+        # Check if any of the risks are YELLOW, ORANGE, or RED
+        if any(risk in ["YELLOW", "ORANGE", "RED"] for risk in [bmi_risk, body_temperature_risk, body_water_risk, urine_color_risk]):
+            # Format the message with emojis
+            message = f"""
+            --- ข้อมูลทหารใหม่ ---
+            รหัสประจำตัว: {soldier_id}
+            ชื่อ: {st.session_state.record.get('Name', 'N/A')} {st.session_state.record.get('Surname', 'N/A')}
+            ----- ความเสี่ยง -----
+            BMI: {emoji_mapping[bmi_risk]}
+            อุณภูมิร่างกาย: {emoji_mapping[body_temperature_risk]}
+            ปริมาณน้ำในร่างกาย: {emoji_mapping[body_water_risk]}
+            สีปัสสาวะ: {emoji_mapping[urine_color_risk]}
+                    """
+    
+            # Send the notification
+            token = "S0zdZC7JLAu6l5vnHFublLHgeK3htiNWizef2aw6a4D"  # Your LINE Notify token
+            send_line_notification(token, message)
     
     # Reset button
     if st.button("รีเซ็ต"):
