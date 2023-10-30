@@ -78,7 +78,7 @@ if st.session_state.fetched:
         bmi = new_weight / ((height / 100) * (height / 100))
         bmi_risk = "RED" if bmi > 30 else "ORANGE" if 25 < bmi < 30 else "GREEN"
         body_temperature_risk = "RED" if body_temperature > 37.2 else "YELLOW" if 36.8 < body_temperature <= 37.2 else "GREEN"
-        body_water_risk = "RED" if body_water < 55 else "YELLOW" if 55 <= body_water < 65 else "GREEN"
+        body_water_risk = "RED" if body_water < 50 else "YELLOW" if 50 <= body_water < 55 else "GREEN"
         urine_color_risk = ["GREEN", "GREEN", "YELLOW", "ORANGE", "RED"][urine_color]
     
         # Display colored boxes for risks
