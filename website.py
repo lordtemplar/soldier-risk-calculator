@@ -2,6 +2,7 @@ import streamlit as st
 import gspread
 import requests
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
 
 def send_line_notification(token, message):
     url = "https://notify-api.line.me/api/notify"
@@ -12,6 +13,14 @@ def send_line_notification(token, message):
     data = {"message": message}
     response = requests.post(url, headers=headers, data=data)
     return response.status_code
+
+def append_to_new_sheet(soldier_id, name, surname, height, weight, body_temperature, body_water, new_weight, urine_color, bmi_risk, body_temperature_risk, body_water_risk, urine_color_risk):
+    NEW_SHEET_URL = "https://docs.google.com/spreadsheets/d/12p8ohDnd5ZyO9H6nU6bjlND0_1pyE-cPguhcewape88/edit?usp=drive_web&ouid=108880626923731848508"
+    spreadsheet = client.open_by_url(NEW_SHEET_URL)
+    worksheet = spreadsheet.sheet1
+
+    # Get the current timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # Setup gspread
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -123,6 +132,10 @@ BMI: {emoji_mapping[bmi_risk]}
             # Send the notification
             token = "S0zdZC7JLAu6l5vnHFublLHgeK3htiNWizef2aw6a4D"  # Your LINE Notify token
             send_line_notification(token, message)
+
+        # Append the data along with the timestamp
+        data = [timestamp, soldier_id, name, surname, height, weight, body_temperature, body_water, new_weight, urine_color, bmi_risk, body_temperature_risk, body_water_risk, urine_color_risk]
+        worksheet.append_row(data)
     
     # Reset button
     if st.button("รีเซ็ต"):
